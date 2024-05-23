@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
 
-export default function Weather() {
-  const [ready, setReady] = useState(false);
-  const [weatherData, setWeatherData] = useState(null);
+export default function Weather(props) {
+  const [weatherData, setWeatherData] = useState({ ready: false });
   function handleResponse(response) {
     setWeatherData({
-      temperature: response.data.main.temp,
-      humidity: response.data.humidity,
-      description: response.data.weather[0].description,
+      ready: true,
+      temperature: response.main.temp,
+      humidity: response.main.humidity,
+      date: "Wednesday 07:00",
+      description: response.weather.description,
       iconUrl: "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
-      wind: response.data.wind.speed,
+      wind: response.wind.speed,
       city: response.data.name,
     });
-    setReady(true);
   }
 
-  if (ready) {
+  if (weatherData.ready) {
     return (
       <div className="Weather">
         <form>
@@ -41,14 +41,15 @@ export default function Weather() {
         </form>
         <h1>{weatherData.city}</h1>
         <ul>
-          <li>Wednesday 07:00</li>
-          <li>{weatherData.description}</li>
+          <li>{weatherData.date}</li>
+          <li className="text-capitalize">{weatherData.description}</li>
         </ul>
         <div className="row">
           <div className="col-6">
             <img
-              src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
-              alt="Sunny"
+              src={weatherData.iconUrl}
+              alt={weatherData.description}
+              className="float-left"
             />
             <span className="temperature">
               {Math.round(weatherData.temperature)}
@@ -66,9 +67,10 @@ export default function Weather() {
       </div>
     );
   } else {
-    let apiKey = "292929ff665169ef5a98dcc8cc29979a";
-    let city = "New York";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?=${city}&appid=${apiKey}&units=metric`;
+    const apiKey = "9ef3fdc20e81bfb077e621d7e0bf3f6c";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}`;
     axios.get(apiUrl).then(handleResponse);
+
+    return "Loading...";
   }
 }
