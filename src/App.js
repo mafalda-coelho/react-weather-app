@@ -26,8 +26,9 @@ export default function App() {
           </a>{" "}
           hosted on{" "}
           <a href="https://celadon-bavarois-3c8009.netlify.app" target="_blank">
-            Netlify 🔆
+            Netlify
           </a>
+          🔆
         </footer>
       </div>
     </div>
