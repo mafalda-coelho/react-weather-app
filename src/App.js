@@ -11,23 +11,15 @@ export default function App() {
 
         <footer>
           This project was coded by{" "}
-          <a
-            href="https://www.linkedin.com/in/mafalda-coelho-5bb15a263/"
-            target="_blank"
-          >
+          <a href="https://www.linkedin.com/in/mafalda-coelho-5bb15a263/">
             Mafalda Coelho
           </a>{" "}
           and is{" "}
-          <a
-            href="https://github.com/mafalda-coelho/react-weather-app"
-            target="_blank"
-          >
+          <a href="https://github.com/mafalda-coelho/react-weather-app">
             open-sourced on Github,
           </a>{" "}
           hosted on{" "}
-          <a href="https://celadon-bavarois-3c8009.netlify.app" target="_blank">
-            Netlify
-          </a>
+          <a href="https://celadon-bavarois-3c8009.netlify.app">Netlify</a>
           🔆
         </footer>
       </div>
